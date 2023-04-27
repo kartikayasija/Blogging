@@ -32,7 +32,6 @@ app.get("/",function(req,res){
     res.render("home.ejs",{home:homeStartingContent, posts:x});
     // console.log(x);
   })
-
 })
 
 app.get("/about",function(req,res){
@@ -53,38 +52,19 @@ app.get("/posts/:postid",function(req,res){
   Compose.findById(req.params.postid,function(err,x){
     if(err) console.log("err");
     else console.log(x);
-    // if(_.lowerCase(x.title) === _.lowerCase(req.params.postName)){
-      res.render("post.ejs",{Heading: x.title,Paragraph: x.content})
-    // }
-    // else console.log("No");
+    res.render("post.ejs",{Heading: x.title,Paragraph: x.content})
   })
 
-
-  // posts.forEach(function(x){
-
-  //   if(_.lowerCase(x.title) === _.lowerCase(req.params.postName)){
-  //     res.render("post.ejs",{Heading: x.title,Paragraph: x.content})
-  //   }
-  //   else console.log("No");
-  // })
 })
-
-
-
 
 
 app.post("/compose",function(req,res){
   
-  // const publish ={
-  //   title: req.body.title,
-  //   content: req.body.content
-  // }
   const compose = new Compose({
     title: req.body.title,
     content: req.body.content
   })
   compose.save();
-  // posts.push(publish);
   res.redirect("/");
   
 })
