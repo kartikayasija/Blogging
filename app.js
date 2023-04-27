@@ -51,7 +51,7 @@ app.get("/posts/:postid",function(req,res){
   console.log(req.params.postid);
   Compose.findById(req.params.postid,function(err,x){
     if(err) console.log("err");
-    else console.log(x);
+    else 
     res.render("post.ejs",{Heading: x.title,Paragraph: x.content})
   })
 
